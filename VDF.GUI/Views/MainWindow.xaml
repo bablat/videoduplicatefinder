@@ -124,7 +124,7 @@
                                                 Fill="{StaticResource SystemBaseHighColor}" />
                                     </StackPanel>
                                 </MenuItem.Header>
-                                <MenuItem Command="{Binding CleanDatabaseCommand}" ToolTip.Tip="Removes entries which file no longer exists or which failed on ffmpeg/ffprobe">
+                                <MenuItem Command="{Binding CleanDatabaseCommand}" >
                                     <MenuItem.Header>
                                         <StackPanel Orientation="Horizontal">
                                             <Viewbox Width="16" Height="16">
@@ -295,7 +295,7 @@
                                     </MenuItem>
                                     <MenuItem Command="{Binding CheckLowestQualityCommand}">
                                         <MenuItem.Header>
-                                            <TextBlock VerticalAlignment="Center" Text="Select Lowest Duration / Quality" ToolTip.Tip="Keep longest / Best Quality" />
+                                            <TextBlock VerticalAlignment="Center" Text="Select Lowest Duration / Quality"  />
                                         </MenuItem.Header>
                                     </MenuItem>
                                     <MenuItem Command="{Binding CheckCustomCommand}">
@@ -449,19 +449,6 @@
                                                                 <ia:InvokeCommandAction Command="{Binding $parent[DataGrid].DataContext.OpenItemCommand}" CommandParameter="{Binding}" />
                                                             </ia:EventTriggerBehavior>
                                                         </i:Interaction.Behaviors>
-                                                        <ToolTip.Tip>
-                                                            <Grid>
-                                                                <Border IsVisible="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=ShowEnlargedThumbnailOnMouseHover}">
-                                                                    <LayoutTransformControl>
-                                                                        <LayoutTransformControl.LayoutTransform>
-                                                                            <ScaleTransform ScaleX="3" ScaleY="3" />
-                                                                        </LayoutTransformControl.LayoutTransform>
-                                                                        <Image Source="{Binding Thumbnail}" />
-                                                                    </LayoutTransformControl>
-                                                                </Border>
-                                                                <TextBlock IsVisible="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=!ShowEnlargedThumbnailOnMouseHover}" Text="Double click to open the file in explorer/shell"/>
-                                                            </Grid>
-                                                        </ToolTip.Tip>
                                                     </Image>
                                                 </Grid>
                                             </DataTemplate>
@@ -678,7 +665,7 @@
                                                     </StackPanel>
                                                 </MenuItem.Header>
                                             </MenuItem>
-                                            <MenuItem Command="{Binding CreateSymbolLinksForSelectedItemsCommand}" ToolTip.Tip="Links all selected items to the first unselected item in each group.">
+                                            <MenuItem Command="{Binding CreateSymbolLinksForSelectedItemsCommand}" >
                                                 <MenuItem.Header>
                                                     <StackPanel Orientation="Horizontal">
                                                         <Viewbox Width="16" Height="16">
@@ -693,7 +680,7 @@
                                                     </StackPanel>
                                                 </MenuItem.Header>
                                             </MenuItem>
-                                            <MenuItem Command="{Binding CreateSymbolLinksForSelectedItemsAndBlacklistCommand}"  ToolTip.Tip="Links all selected items to the first unselected item in each group.">
+                                            <MenuItem Command="{Binding CreateSymbolLinksForSelectedItemsAndBlacklistCommand}"  >
                                                 <MenuItem.Header>
                                                     <StackPanel Orientation="Horizontal">
                                                         <Viewbox Width="16" Height="16">
@@ -717,7 +704,7 @@
                                             <MenuItem Command="{Binding CollapseAllGroupsCommand}" Header="Collapse all" />
                                         </MenuItem>
                                         <MenuItem Header="Selected Group">
-                                            <MenuItem Command="{Binding MarkGroupAsNotAMatchCommand}" Header="Mark as 'Not a match'" ToolTip.Tip="Hides this group and exclude it from future scans, except when there is a new duplicate." />
+                                            <MenuItem Command="{Binding MarkGroupAsNotAMatchCommand}" Header="Mark as 'Not a match'"  />
                                             <MenuItem Command="{Binding OpenGroupCommand}" Header="Open Group" CommandParameter="0" IsVisible="{Binding MultiOpenSupported}"/>
                                             <MenuItem Command="{Binding OpenGroupCommand}" Header="Open Group In Folder" CommandParameter="1" IsVisible="{Binding MultiOpenInFolderSupported}" />
                                         </MenuItem>
@@ -824,7 +811,7 @@
                                     Content="Generate Preview Images"
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=GeneratePreviewThumbnails}"
                                     IsThreeState="False"
-                                    ToolTip.Tip="Deactivate to save memory by disabling preview images of duplicates" />
+                                     />
                                 <CheckBox
                                     VerticalAlignment="Center"
                                     Content="Exclude hardlinks"
@@ -833,62 +820,62 @@
                                 <CheckBox
                                     VerticalAlignment="Center"
                                     Content="Extended FFTools Logging"
-                                    ToolTip.Tip="If activated ffmpeg and ffprobe errors will be written to the log"
+                                    
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=ExtendedFFToolsLogging}"
                                     IsThreeState="False" />
                                 <CheckBox
                                     VerticalAlignment="Center"
                                     Content="Always retry failed sampling"
-                                    ToolTip.Tip="If activated scan engine will try to generate thumbprints of failed entries each time it is run. Otherwise consecutive attempt will be taken only after cleanup of the database."
+                                    
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=AlwaysRetryFailedSampling}"
                                     IsThreeState="False" />
                                 <CheckBox
                                     VerticalAlignment="Center"
                                     Content="Auto backup scan results"
-                                    ToolTip.Tip="If activated a backup gets created each time the scan results list gets changed"
+                                    
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=BackupAfterListChanged}"
                                     IsThreeState="False" />
                                 <CheckBox
                                     VerticalAlignment="Center"
                                     Content="Use native Ffmpeg binding"
-                                    ToolTip.Tip="If activated it will call ffmpeg functions natively instead of spawning a new ffmpeg.exe process. This is MUCH(!!) faster. WARNING: You must use the latest SHARED and STABLE ffmpeg version. If something goes wrong then whole VDF will crash."
+                                    
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=UseNativeFfmpegBinding}"
                                     IsThreeState="False" />
                                 <CheckBox
                                     VerticalAlignment="Center"
                                     Content="Ignore Black Pixels"
-                                    ToolTip.Tip="Skip black pixels when comparing thumbnails. Lowers the chance for 'false positives' if thumbnails contain too much dark and raises the chance to detect duplicates if one of the thumbnails have black bars and the others not. In rare scenarios this might raise the 'false positives' instead. Slows down the scan speed by a bit."
+                                    
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=IgnoreBlackPixels}"
                                     IsThreeState="False" />
                                 <CheckBox
                                     VerticalAlignment="Center"
                                     Content="Ignore White Pixels"
-                                    ToolTip.Tip="Skip white pixels when comparing thumbnails. Lowers the chance for 'false positives' if thumbnails contain too much brightness and raises the chance to detect duplicates if one of the thumbnails have white bars and the others not. In rare scenarios this might raise the 'false positives' instead. Slows down the scan speed by a bit."
+                                    
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=IgnoreWhitePixels}"
                                     IsThreeState="False" />
                                 <CheckBox
                                     VerticalAlignment="Center"
                                     Content="Show Enlarged Thumbnail On Mouse Hover"
-                                    ToolTip.Tip="Shows a larger version of the thumbnail on mouse hover"
+                                    
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=ShowEnlargedThumbnailOnMouseHover}"
                                     IsThreeState="False" />
 								<CheckBox
                                     VerticalAlignment="Center"
                                     Content="Compare Horizontally Flipped"
-									ToolTip.Tip="Select this option if your video collection might contain horizontally flipped videos and you want them to be detected reliably. Slows down the scan speed by a bit."
+									
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=CompareHorizontallyFlipped}"
                                     IsThreeState="False" />
                                 <CheckBox
                                     VerticalAlignment="Center"
                                     Content="Save results on exit"
-									ToolTip.Tip="If checked you will be asked if you want to save the results when you close VDF"
+									
                                     IsChecked="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=AskToSaveResultsOnExit}"
                                     IsThreeState="False" />
                             </StackPanel>
                             <StackPanel Margin="15,5,0,0" Grid.Column="1">
                                 <TextBlock
                                     VerticalAlignment="Center"
-                                    ToolTip.Tip="Minimum percentage that thumbnails must match before they are considered duplicates"
+                                    
                                     Text="Percent:" />
                                 <NumericUpDown
                                     Height="26"
@@ -897,17 +884,17 @@
                                     VerticalAlignment="Center"
                                     Maximum="100"
                                     Minimum="1"
-                                    ToolTip.Tip="Minimum percentage that thumbnails must match before they are considered duplicates"
+                                    
                                     Value="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=Percent}" />
                                 <TextBlock
                                     Margin="0,5,0,0"
-                                    ToolTip.Tip="Number of thumbnails generated per file. This only applies to video files. A high number means that the scan takes longer but also the chance of a 'false positive' decreases."
+                                    
                                     VerticalAlignment="Center"
                                     Text="Thumbnails:" />
                                 <NumericUpDown
                                     Height="26"
                                     Width="200"
-                                    ToolTip.Tip="Number of thumbnails generated per file. This only applies to video files. A high number means that the scan takes longer but also the chance of a 'false positive' decreases."
+                                    
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     Maximum="100"
@@ -916,59 +903,59 @@
                                 <TextBlock
                                     Margin="0,5,0,0"
                                     VerticalAlignment="Center"
-                                    ToolTip.Tip="Limits the amount of concurrent tasks. A value of -1 leaves it up to the system to decide, a value of 1 is most stable."
+                                    
                                     Text="Max Degree Of Parallelism:" />
                                 <NumericUpDown
                                     Height="26"
                                     Width="200"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
-                                    ToolTip.Tip="Limits the amount of concurrent tasks. A value of -1 leaves it up to the system to decide, a value of 1 is most stable."
+                                    
                                     Maximum="100"
                                     Minimum="-1"
                                     Value="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=MaxDegreeOfParallelism}" />
                                 <TextBlock
                                     VerticalAlignment="Center"
-                                    ToolTip.Tip="FF(mpeg/probe) arguments passed to the end of the internal arguments. Most users can leave this empty."
+                                    
                                     Text="Custom FF Arguments:" />
                                 <TextBox
                                     VerticalAlignment="Center"
-                                    ToolTip.Tip="FF(mpeg/probe) arguments passed to the end of the internal arguments. Most users can leave this empty."
+                                    
                                     Text="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=CustomFFArguments}" />
                                 <TextBlock
                                     VerticalAlignment="Center"
                                     FontSize="14"
-                                    ToolTip.Tip="Hardware acceleration mode of ffmpeg"
+                                    
                                     Text="Hardware Acceleration:" />
                                 <ComboBox
                                     VerticalAlignment="Center"
-                                    ToolTip.Tip="Hardware acceleration mode of ffmpeg"
+                                    
                                     Items="{Binding HardwareAccelerationModes}"
                                     SelectedItem="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=HardwareAccelerationMode}" />
                                 <TextBlock
                                     VerticalAlignment="Center"
                                     FontSize="14"
-                                    ToolTip.Tip="Enter your own commands to open single or multiple files."
+                                    
                                     Text="Custom Commands:" />
                                 <ComboBox
                                     Width="200"
                                     VerticalAlignment="Center"
-                                    ToolTip.Tip="Enter your own commands to open single or multiple files."
+                                    
                                     Items="{Binding CustomCommandList}"
                                     SelectedItem="{Binding SelectedCustomCommand}"
                                     />
                                 <TextBox
                                     VerticalAlignment="Center"
-                                    ToolTip.Tip="E.g.: 'nemo --tabs %f', where '%f' is the placeholder for the file(s)"
+                                    
                                     Text="{Binding SelectedCustomCommandValue}" />
                                 <TextBlock
                                     VerticalAlignment="Center"
                                     FontSize="14"
-                                    ToolTip.Tip="Specify a custom database folder. Otherwise it uses the current VDF folder."
+                                    
                                     Text="Custom Database Folder:" />
                                 <TextBox
                                     VerticalAlignment="Center"
-                                    ToolTip.Tip="Specify a custom database folder. Otherwise it uses the current VDF folder."
+                                    
                                     Text="{Binding Source={x:Static Settings:SettingsFile.Instance}, Path=CustomDatabaseFolder}" />
                             </StackPanel>
                         </Grid>
